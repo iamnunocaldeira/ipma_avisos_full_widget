@@ -11,9 +11,9 @@ body{display:inline-block;padding:0}
 
 /* ── Map widget ── */
 .map-widget{
-  width:200px;background:#fff;border:1px solid #ccc;border-radius:4px 4px 0 0;
+  width:200px;background:#fff;border:1px solid #ccc;border-radius:0 0 4px 4px;
   overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;
-  border-bottom:none;
+  border-top:none;
 }
 .map-widget:hover{filter:brightness(0.96)}
 .map-title{
@@ -103,8 +103,7 @@ body{display:inline-block;padding:0}
   width:200px;
   font-size:5.5px;color:#666;text-align:right;
   padding:1px 4px 3px;
-  border:1px solid #ccc;border-top:none;
-  border-radius:0 0 4px 4px;
+  border:1px solid #ccc;border-top:none;border-bottom:none;
   background:#fff;
 }
 </style>
@@ -233,10 +232,10 @@ async function load(){
 
     /* Render all sections */
     content.innerHTML=
-      buildMapWidget()+
       buildHeaderWidget()+
       Object.entries(REGIONS).map(([code,name])=>buildRegionWidget(code,name,rd[code])).join('')+
-      '<div class="fonte">Fonte: IPMA</div>';
+      '<div class="fonte">Fonte: IPMA</div>'+
+      buildMapWidget();
 
     /* Colour the map now that SVG is in DOM */
     paintMap('reg-AM-N', COLORS_M[lvAMN!=='none'?lvAMN:lvMCN]);
